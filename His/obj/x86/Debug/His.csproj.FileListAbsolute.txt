@@ -1,0 +1,6 @@
+E:\GitHub\His\His\bin\Debug\His.exe
+E:\GitHub\His\His\bin\Debug\His.pdb
+E:\GitHub\His\His\obj\x86\Debug\His.Properties.Resources.resources
+E:\GitHub\His\His\obj\x86\Debug\His.csproj.GenerateResource.Cache
+E:\GitHub\His\His\obj\x86\Debug\His.exe
+E:\GitHub\His\His\obj\x86\Debug\His.pdb
