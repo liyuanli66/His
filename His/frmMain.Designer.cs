@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.RGBitem = new DevExpress.XtraBars.RibbonGalleryBarItem();
             this.ceshi = new DevExpress.XtraBars.BarButtonItem();
@@ -43,6 +44,8 @@
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.barbtnDictType = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             this.SuspendLayout();
@@ -57,9 +60,11 @@
             this.barbtnDept,
             this.barbtnDoctor,
             this.barbtnDosage,
-            this.barbtnEfficacy});
+            this.barbtnEfficacy,
+            this.barbtnDictType,
+            this.barButtonItem1});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 7;
+            this.ribbonControl1.MaxItemId = 9;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -134,6 +139,8 @@
             // 
             this.ribbonPageGroup2.ItemLinks.Add(this.barbtnDept);
             this.ribbonPageGroup2.ItemLinks.Add(this.barbtnDoctor);
+            this.ribbonPageGroup2.ItemLinks.Add(this.barbtnDictType);
+            this.ribbonPageGroup2.ItemLinks.Add(this.barButtonItem1);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "系统字典";
             // 
@@ -161,6 +168,24 @@
             // 
             this.popupMenu1.Name = "popupMenu1";
             this.popupMenu1.Ribbon = this.ribbonControl1;
+            // 
+            // barbtnDictType
+            // 
+            this.barbtnDictType.Caption = "主字典类型";
+            this.barbtnDictType.Glyph = ((System.Drawing.Image)(resources.GetObject("barbtnDictType.Glyph")));
+            this.barbtnDictType.Id = 7;
+            this.barbtnDictType.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barbtnDictType.LargeGlyph")));
+            this.barbtnDictType.Name = "barbtnDictType";
+            this.barbtnDictType.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuAllClick);
+            // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "主字典信息";
+            this.barButtonItem1.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.Glyph")));
+            this.barButtonItem1.Id = 8;
+            this.barButtonItem1.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.LargeGlyph")));
+            this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.menuAllClick);
             // 
             // frmMain
             // 
@@ -195,5 +220,7 @@
         private DevExpress.XtraBars.BarButtonItem barbtnDoctor;
         private DevExpress.XtraBars.BarButtonItem barbtnDosage;
         private DevExpress.XtraBars.BarButtonItem barbtnEfficacy;
+        private DevExpress.XtraBars.BarButtonItem barbtnDictType;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
     }
 }

@@ -101,6 +101,14 @@ namespace HisClient
                     frmcreate = new HisClient.Models.DICT.frmCommEfficacy();
                     frmcreate.WindowState = FormWindowState.Maximized;
                     break;
+                case "主字典类型":
+                    frmcreate = new HisClient.Models.DICT.frmCommDictType();
+                    frmcreate.WindowState = FormWindowState.Maximized;
+                    break;
+                case "主字典信息":
+                    frmcreate = new HisClient.Models.DICT.frmCommDictInfo();
+                    frmcreate.WindowState = FormWindowState.Maximized;
+                    break;
             }
              //判断窗体是否打开
             if (frmcreate != null)

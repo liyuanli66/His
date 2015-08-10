@@ -9,22 +9,21 @@ using System.Windows.Forms;
 
 namespace HisClient.Models.DICT
 {
-    public partial class frmCommEfficacy : DevExpress.XtraEditors.XtraForm
+    public partial class frmCommDictType : DevExpress.XtraEditors.XtraForm
     {
-        public frmCommEfficacy()
+        public frmCommDictType()
         {
             InitializeComponent();
         }
 
-
         #region 初始化
-        HisClient.BLL.his_comm_efficacy bll = new HisClient.BLL.his_comm_efficacy();
+        HisClient.BLL.his_comm_dict_type bll = new HisClient.BLL.his_comm_dict_type();
         private string strWhere = string.Empty;
         ComFunc comfun = new ComFunc();
         #endregion
 
         #region 事件
-        private void frmCommEfficacy_Load(object sender, EventArgs e)
+        private void frmCommDept_Load(object sender, EventArgs e)
         {
             Query("");
         }
@@ -37,10 +36,10 @@ namespace HisClient.Models.DICT
         {
 
             if (txtCode.Text != string.Empty)
-                strWhere += " and EFFICACY_CODE like '%" + txtCode.Text + "%'";
+                strWhere += " and TYPE_CODE like '%" + txtCode.Text + "%'";
 
             if (txtName.Text != string.Empty)
-                strWhere += " and EFFICACY_NAME like '%" + txtName.Text + "%'";
+                strWhere += " and TYPE_NAME like '%" + txtName.Text + "%'";
 
             if (txtHelpCode.Text != string.Empty)
                 strWhere += " and HELP_CODE like '%" + txtHelpCode.Text + "%'";
@@ -59,7 +58,7 @@ namespace HisClient.Models.DICT
                 if (txtCode.Text.Trim() == string.Empty)
                 {
                     MessageBox.Show("编码不可为空！");
-                    return; 
+                    return;
                 }
                 if (txtName.Text.Trim() == string.Empty)
                 {
@@ -68,16 +67,16 @@ namespace HisClient.Models.DICT
                 }
                 try
                 {
-                    HisClient.Model.his_comm_efficacy model = new Model.his_comm_efficacy();
+                    HisClient.Model.his_comm_dict_type model = new Model.his_comm_dict_type();
                     model.ID = "123";
-                    model.EFFICACY_CODE = txtCode.Text.Trim();
-                    model.EFFICACY_NAME = txtName.Text.Trim();
+                    model.TYPE_CODE = txtCode.Text.Trim();
+                    model.TYPE_NAME = txtName.Text.Trim();
                     model.HELP_CODE = txtHelpCode.Text.Trim();
                     bll.Add(model);
                     MessageBox.Show("保存成功！");
                     clear();
                 }
-                catch (Exception ex) 
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
                 }
@@ -104,10 +103,10 @@ namespace HisClient.Models.DICT
                 }
                 try
                 {
-                    HisClient.Model.his_comm_efficacy model = new Model.his_comm_efficacy();
+                    HisClient.Model.his_comm_dict_type model = new Model.his_comm_dict_type();
                     model.ID = txtName.ID;
-                    model.EFFICACY_CODE = txtCode.Text.Trim();
-                    model.EFFICACY_NAME = txtName.Text.Trim();
+                    model.TYPE_CODE = txtCode.Text.Trim();
+                    model.TYPE_NAME = txtName.Text.Trim();
                     model.HELP_CODE = txtHelpCode.Text.Trim();
                     bll.Update(model);
                     MessageBox.Show("更新成功！");
@@ -132,7 +131,7 @@ namespace HisClient.Models.DICT
                 MessageBox.Show("删除成功！");
                 clear();
             }
-            
+
         }
         /// <summary>
         /// 清空
@@ -153,7 +152,7 @@ namespace HisClient.Models.DICT
         }
         private void txtName_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter) 
+            if (e.KeyCode == Keys.Enter)
             {
                 if (txtName.Text != string.Empty)
                 {
@@ -179,12 +178,12 @@ namespace HisClient.Models.DICT
             {
                 txtName.ID = rowIdObj.ToString();
 
-                object rowCodeObj = gridView1.GetRowCellValue(intRowHandle, "EFFICACY_CODE");
+                object rowCodeObj = gridView1.GetRowCellValue(intRowHandle, "TYPE_CODE");
                 if (rowCodeObj != null)
                 {
                     this.txtCode.Text = rowCodeObj.ToString();
                 }
-                object rowNameObj = gridView1.GetRowCellValue(intRowHandle, "EFFICACY_NAME");
+                object rowNameObj = gridView1.GetRowCellValue(intRowHandle, "TYPE_NAME");
                 if (rowNameObj != null)
                 {
                     this.txtName.Text = rowNameObj.ToString();
@@ -213,7 +212,7 @@ namespace HisClient.Models.DICT
                 //ComFunc comfun = new ComFunc();
                 //comfun.dgvstyle(gridView1, 0, "aa", "第一", 10, true, true, DevExpress.Utils.HorzAlignment.Center, DevExpress.XtraGrid.Columns.FixedStyle.Left, true);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
             }
@@ -228,6 +227,5 @@ namespace HisClient.Models.DICT
             Query("");
         }
         #endregion     
-
-   }
+    }
 }

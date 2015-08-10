@@ -9,22 +9,21 @@ using System.Windows.Forms;
 
 namespace HisClient.Models.DICT
 {
-    public partial class frmCommEfficacy : DevExpress.XtraEditors.XtraForm
+    public partial class frmCommDictInfo : DevExpress.XtraEditors.XtraForm
     {
-        public frmCommEfficacy()
+        public frmCommDictInfo()
         {
             InitializeComponent();
         }
 
-
         #region 初始化
-        HisClient.BLL.his_comm_efficacy bll = new HisClient.BLL.his_comm_efficacy();
+        HisClient.BLL.his_comm_dict_info bll = new HisClient.BLL.his_comm_dict_info();
         private string strWhere = string.Empty;
         ComFunc comfun = new ComFunc();
         #endregion
 
         #region 事件
-        private void frmCommEfficacy_Load(object sender, EventArgs e)
+        private void frmCommDictInfo_Load(object sender, EventArgs e)
         {
             Query("");
         }
@@ -59,7 +58,7 @@ namespace HisClient.Models.DICT
                 if (txtCode.Text.Trim() == string.Empty)
                 {
                     MessageBox.Show("编码不可为空！");
-                    return; 
+                    return;
                 }
                 if (txtName.Text.Trim() == string.Empty)
                 {
@@ -68,16 +67,16 @@ namespace HisClient.Models.DICT
                 }
                 try
                 {
-                    HisClient.Model.his_comm_efficacy model = new Model.his_comm_efficacy();
+                    HisClient.Model.his_comm_dict_info model = new Model.his_comm_dict_info();
                     model.ID = "123";
-                    model.EFFICACY_CODE = txtCode.Text.Trim();
-                    model.EFFICACY_NAME = txtName.Text.Trim();
+                    model.DICT_CODE = txtCode.Text.Trim();
+                    model.DICT_NAME = txtName.Text.Trim();
                     model.HELP_CODE = txtHelpCode.Text.Trim();
                     bll.Add(model);
                     MessageBox.Show("保存成功！");
                     clear();
                 }
-                catch (Exception ex) 
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
                 }
@@ -104,10 +103,10 @@ namespace HisClient.Models.DICT
                 }
                 try
                 {
-                    HisClient.Model.his_comm_efficacy model = new Model.his_comm_efficacy();
+                    HisClient.Model.his_comm_dict_info model = new Model.his_comm_dict_info();
                     model.ID = txtName.ID;
-                    model.EFFICACY_CODE = txtCode.Text.Trim();
-                    model.EFFICACY_NAME = txtName.Text.Trim();
+                    model.DICT_CODE = txtCode.Text.Trim();
+                    model.DICT_NAME = txtName.Text.Trim();
                     model.HELP_CODE = txtHelpCode.Text.Trim();
                     bll.Update(model);
                     MessageBox.Show("更新成功！");
@@ -132,7 +131,7 @@ namespace HisClient.Models.DICT
                 MessageBox.Show("删除成功！");
                 clear();
             }
-            
+
         }
         /// <summary>
         /// 清空
@@ -148,12 +147,19 @@ namespace HisClient.Models.DICT
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txtName.Focus();
+                this.lpdDictType.Focus();
+            }
+        }
+        private void lpdDictType_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.txtName.Focus();
             }
         }
         private void txtName_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter) 
+            if (e.KeyCode == Keys.Enter)
             {
                 if (txtName.Text != string.Empty)
                 {
@@ -213,7 +219,7 @@ namespace HisClient.Models.DICT
                 //ComFunc comfun = new ComFunc();
                 //comfun.dgvstyle(gridView1, 0, "aa", "第一", 10, true, true, DevExpress.Utils.HorzAlignment.Center, DevExpress.XtraGrid.Columns.FixedStyle.Left, true);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
             }
@@ -227,7 +233,8 @@ namespace HisClient.Models.DICT
             txtHelpCode.Text = string.Empty;
             Query("");
         }
-        #endregion     
+        #endregion       
 
-   }
+
+    }
 }
