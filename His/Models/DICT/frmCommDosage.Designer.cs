@@ -90,6 +90,7 @@
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(116, 20);
             this.txtCode.TabIndex = 1;
+            this.txtCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCode_KeyDown);
             // 
             // labelControl3
             // 
@@ -123,6 +124,7 @@
             this.btnClear.Size = new System.Drawing.Size(75, 30);
             this.btnClear.TabIndex = 19;
             this.btnClear.Text = "清空";
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // txtName
             // 
@@ -132,6 +134,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(142, 20);
             this.txtName.TabIndex = 2;
+            this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtName_KeyDown);
             // 
             // btnDelete
             // 
@@ -141,6 +144,7 @@
             this.btnDelete.Size = new System.Drawing.Size(75, 30);
             this.btnDelete.TabIndex = 18;
             this.btnDelete.Text = "删除";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 
@@ -150,6 +154,7 @@
             this.btnUpdate.Size = new System.Drawing.Size(75, 30);
             this.btnUpdate.TabIndex = 17;
             this.btnUpdate.Text = "修改";
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnAdd
             // 
@@ -159,6 +164,7 @@
             this.btnAdd.Size = new System.Drawing.Size(75, 30);
             this.btnAdd.TabIndex = 16;
             this.btnAdd.Text = "新增";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnQuery
             // 
@@ -185,6 +191,7 @@
             // 
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView1_FocusedRowChanged);
             // 
             // frmCommDosage
             // 
@@ -195,6 +202,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "frmCommDosage";
             this.Text = "frmCommDosage";
+            this.Load += new System.EventHandler(this.frmCommDosage_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtHelpCode.Properties)).EndInit();

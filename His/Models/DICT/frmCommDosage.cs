@@ -18,7 +18,6 @@ namespace HisClient.Models.DICT
 
         #region 初始化
         HisClient.BLL.his_comm_dosage bll = new HisClient.BLL.his_comm_dosage();
-        private string strID = string.Empty;
         private string strWhere = string.Empty;
         ComFunc comfun = new ComFunc();
         #endregion
@@ -37,10 +36,10 @@ namespace HisClient.Models.DICT
         {
 
             if (txtCode.Text != string.Empty)
-                strWhere += " and EFFICACY_CODE like '%" + txtCode.Text + "%'";
+                strWhere += " and DOSAGE_CODE like '%" + txtCode.Text + "%'";
 
             if (txtName.Text != string.Empty)
-                strWhere += " and EFFICACY_NAME like '%" + txtName.Text + "%'";
+                strWhere += " and DOSAGE_NAME like '%" + txtName.Text + "%'";
 
             if (txtHelpCode.Text != string.Empty)
                 strWhere += " and HELP_CODE like '%" + txtHelpCode.Text + "%'";
@@ -75,6 +74,7 @@ namespace HisClient.Models.DICT
                     model.HELP_CODE = txtHelpCode.Text.Trim();
                     bll.Add(model);
                     MessageBox.Show("保存成功！");
+                    clear();
                 }
                 catch (Exception ex)
                 {
@@ -104,12 +104,13 @@ namespace HisClient.Models.DICT
                 try
                 {
                     HisClient.Model.his_comm_dosage model = new Model.his_comm_dosage();
-                    model.ID = "123";
+                    model.ID = txtName.ID;
                     model.DOSAGE_CODE = txtCode.Text.Trim();
                     model.DOSAGE_NAME = txtName.Text.Trim();
                     model.HELP_CODE = txtHelpCode.Text.Trim();
                     bll.Update(model);
                     MessageBox.Show("更新成功！");
+                    clear();
                 }
                 catch (Exception ex)
                 {
@@ -127,6 +128,7 @@ namespace HisClient.Models.DICT
             if (txtName.ID != string.Empty)
             {
                 bll.Delete(txtName.ID);
+                MessageBox.Show("删除成功！");
                 clear();
             }
 
@@ -161,6 +163,38 @@ namespace HisClient.Models.DICT
                 }
             }
         }
+        /// <summary>
+        /// 当焦点行发生改变时执行 获取选中焦点行id
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            int intRowHandle = e.FocusedRowHandle;
+
+            object rowIdObj = gridView1.GetRowCellValue(intRowHandle, "ID");
+
+            if (DBNull.Value != rowIdObj)//做个判断否则获取不到id后报错
+            {
+                txtName.ID = rowIdObj.ToString();
+
+                object rowCodeObj = gridView1.GetRowCellValue(intRowHandle, "DOSAGE_CODE");
+                if (rowCodeObj != null)
+                {
+                    this.txtCode.Text = rowCodeObj.ToString();
+                }
+                object rowNameObj = gridView1.GetRowCellValue(intRowHandle, "DOSAGE_NAME");
+                if (rowNameObj != null)
+                {
+                    this.txtName.Text = rowNameObj.ToString();
+                }
+                object rowHelpCodeObj = gridView1.GetRowCellValue(intRowHandle, "HELP_CODE");
+                if (rowHelpCodeObj != null)
+                {
+                    this.txtHelpCode.Text = rowHelpCodeObj.ToString();
+                }
+            }
+        }
         #endregion
 
         #region 方法
@@ -186,7 +220,7 @@ namespace HisClient.Models.DICT
 
         private void clear()
         {
-            strID = string.Empty;
+            txtName.ID = string.Empty;
             txtCode.Text = string.Empty;
             txtName.Text = string.Empty;
             txtHelpCode.Text = string.Empty;
