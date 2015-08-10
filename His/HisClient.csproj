@@ -89,6 +89,18 @@
     <Compile Include="Models\DICT\frmCommDept.Designer.cs">
       <DependentUpon>frmCommDept.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\DICT\frmCommDictInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Models\DICT\frmCommDictInfo.Designer.cs">
+      <DependentUpon>frmCommDictInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DICT\frmCommDictType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Models\DICT\frmCommDictType.Designer.cs">
+      <DependentUpon>frmCommDictType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\DICT\frmCommDoctor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +129,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Models\DICT\frmCommDept.resx">
       <DependentUpon>frmCommDept.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\DICT\frmCommDictInfo.resx">
+      <DependentUpon>frmCommDictInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\DICT\frmCommDictType.resx">
+      <DependentUpon>frmCommDictType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Models\DICT\frmCommDosage.resx">
       <DependentUpon>frmCommDosage.cs</DependentUpon>
