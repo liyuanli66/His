@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using DevExpress.Skins;
 
-namespace His
+namespace HisClient
 {
     static class Program
     {
@@ -13,9 +14,14 @@ namespace His
         [STAThread]
         static void Main()
         {
+            DevExpress.UserSkins.BonusSkins.Register();          
+            //if (!DevExpress.Skins.SkinManager.AllowFormSkins)
+            DevExpress.Skins.SkinManager.EnableFormSkins();
+            Application.EnableVisualStyles();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new frmMain());
+           
         }
     }
 }

@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2E672798-655C-4CBB-9E83-E163BB6FCA02}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HisClient</RootNamespace>
+    <AssemblyName>HisClient</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ChnCharInfo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=18f031bd02e5e291, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\ChnCharInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.BonusSkins.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGrid.v13.1, Version=13.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\ComFunc.cs" />
+    <Compile Include="Common\FormAccess.cs" />
+    <Compile Include="Common\LoggingService.cs" />
+    <Compile Include="Common\PinYin.cs" />
+    <Compile Include="Controls\zqctext.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\zqctext.Designer.cs">
+      <DependentUpon>zqctext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DICT\frmCommDept.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Models\DICT\frmCommDept.Designer.cs">
+      <DependentUpon>frmCommDept.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DICT\frmCommDoctor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Models\DICT\frmCommDoctor.Designer.cs">
+      <DependentUpon>frmCommDoctor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DICT\frmCommDosage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Models\DICT\frmCommDosage.Designer.cs">
+      <DependentUpon>frmCommDosage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DICT\frmCommEfficacy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Models\DICT\frmCommEfficacy.Designer.cs">
+      <DependentUpon>frmCommEfficacy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\DICT\frmCommDept.resx">
+      <DependentUpon>frmCommDept.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\DICT\frmCommDosage.resx">
+      <DependentUpon>frmCommDosage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\DICT\frmCommEfficacy.resx">
+      <DependentUpon>frmCommEfficacy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HisClient.BLL\HisClient.BLL.csproj">
+      <Project>{816F7EFD-9CFD-4009-A14D-0C0B82936971}</Project>
+      <Name>HisClient.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HisClient.Model\HisClient.Model.csproj">
+      <Project>{D50AA169-4E58-4021-B615-F168ED7A6E0D}</Project>
+      <Name>HisClient.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="log4net.xml" />
+    <Content Include="Resources\002.png" />
+    <Content Include="Resources\036.png" />
+    <Content Include="Resources\051.png" />
+    <Content Include="Resources\071.png" />
+    <Content Include="Resources\Medical_Toolbar_003.png" />
+    <Content Include="Resources\Medical_Toolbar_006.png" />
+    <Content Include="Resources\住院管理\一日清单.png" />
+    <Content Include="Resources\住院管理\交纳押金.png" />
+    <Content Include="Resources\住院管理\入院登记.png" />
+    <Content Include="Resources\住院管理\医嘱录入.png" />
+    <Content Include="Resources\住院管理\月结账务.png" />
+    <Content Include="Resources\住院管理\病人出院.png" />
+    <Content Include="Resources\住院管理\病人召回.png" />
+    <Content Include="Resources\基础字典\剂型字典.png" />
+    <Content Include="Resources\基础字典\功效字典.png" />
+    <Content Include="Resources\基础字典\医生字典.png" />
+    <Content Include="Resources\基础字典\床位字典.png" />
+    <Content Include="Resources\基础字典\疾病字典.png" />
+    <Content Include="Resources\基础字典\病例类别字典.png" />
+    <Content Include="Resources\基础字典\科室字典.jpg" />
+    <Content Include="Resources\基础字典\药库供应商字典.png" />
+    <Content Include="Resources\基础字典\药库销售字典.png" />
+    <Content Include="Resources\基础字典\药房字典.png" />
+    <Content Include="Resources\基础字典\药材字典.png" />
+    <Content Include="Resources\基础字典\角色字典.png" />
+    <Content Include="Resources\基础字典\角色对应字典.png" />
+    <Content Include="Resources\基础字典\诊疗字典.png" />
+    <Content Include="Resources\基础字典\邻导字典.png" />
+    <Content Include="Resources\数据接口\入院上报.png" />
+    <Content Include="Resources\数据接口\出院即报.png" />
+    <Content Include="Resources\系统设置\个人设置.png" />
+    <Content Include="Resources\系统设置\数据库维护.png" />
+    <Content Include="Resources\系统设置\用户设置.jpg" />
+    <Content Include="Resources\系统设置\菜单重置.png" />
+    <Content Include="Resources\药库管理\库存维护.png" />
+    <Content Include="Resources\药库管理\接收药房退回.png" />
+    <Content Include="Resources\药库管理\药品调拨药房.png" />
+    <Content Include="Resources\药库管理\药品采购入库.png" />
+    <Content Include="Resources\药库管理\药品销售.png" />
+    <Content Include="Resources\药库管理\退回采购商.png" />
+    <Content Include="Resources\药房管理\住院发药.png" />
+    <Content Include="Resources\药房管理\库存维护.png" />
+    <Content Include="Resources\药房管理\药品退回药库.png" />
+    <Content Include="Resources\药房管理\药房接收调拨.png" />
+    <Content Include="Resources\药房管理\门诊发药.png" />
+    <Content Include="Resources\门诊管理\一日清单.png" />
+    <Content Include="Resources\门诊管理\门诊作废.png" />
+    <Content Include="Resources\门诊管理\门诊处方.png" />
+    <None Include="Resources\015.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

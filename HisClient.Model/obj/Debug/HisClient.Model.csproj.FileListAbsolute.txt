@@ -1,0 +1,9 @@
+C:\Users\Administrator\Desktop\his3\HIS\HisClient.Model\bin\Debug\HisClient.Model.dll
+C:\Users\Administrator\Desktop\his3\HIS\HisClient.Model\bin\Debug\HisClient.Model.pdb
+C:\Users\Administrator\Desktop\his3\HIS\HisClient.Model\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\his3\HIS\HisClient.Model\obj\Debug\HisClient.Model.dll
+C:\Users\Administrator\Desktop\his3\HIS\HisClient.Model\obj\Debug\HisClient.Model.pdb
+E:\GitHub\HIS\HisClient.Model\bin\Debug\HisClient.Model.dll
+E:\GitHub\HIS\HisClient.Model\bin\Debug\HisClient.Model.pdb
+E:\GitHub\HIS\HisClient.Model\obj\Debug\HisClient.Model.dll
+E:\GitHub\HIS\HisClient.Model\obj\Debug\HisClient.Model.pdb

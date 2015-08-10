@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{816F7EFD-9CFD-4009-A14D-0C0B82936971}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HisClient.BLL</RootNamespace>
+    <AssemblyName>HisClient.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="comm_icd10.cs" />
+    <Compile Include="comm_icd10_type.cs" />
+    <Compile Include="his_bil_cl_receipt.cs" />
+    <Compile Include="his_bil_cl_recp_detail.cs" />
+    <Compile Include="his_bil_counter.cs" />
+    <Compile Include="his_cl_daily_statement.cs" />
+    <Compile Include="his_cl_daily_statement_itemtyp.cs" />
+    <Compile Include="his_cl_medical_record.cs" />
+    <Compile Include="his_cl_order_item.cs" />
+    <Compile Include="his_cl_prescription.cs" />
+    <Compile Include="his_cl_pres_detail_cancle.cs" />
+    <Compile Include="his_comm_account.cs" />
+    <Compile Include="his_comm_dept.cs" />
+    <Compile Include="his_comm_dict_info.cs" />
+    <Compile Include="his_comm_dict_type.cs" />
+    <Compile Include="his_comm_doctor.cs" />
+    <Compile Include="his_comm_dosage.cs" />
+    <Compile Include="his_comm_efficacy.cs" />
+    <Compile Include="his_comm_feeitem.cs" />
+    <Compile Include="his_comm_function.cs" />
+    <Compile Include="his_comm_hospital.cs" />
+    <Compile Include="his_comm_manufacture.cs" />
+    <Compile Include="his_comm_medinfo.cs" />
+    <Compile Include="his_comm_medname.cs" />
+    <Compile Include="his_comm_medtype.cs" />
+    <Compile Include="his_comm_module.cs" />
+    <Compile Include="his_comm_role.cs" />
+    <Compile Include="his_comm_system.cs" />
+    <Compile Include="his_ds_changeprice.cs" />
+    <Compile Include="his_ds_changepriceinfo.cs" />
+    <Compile Include="his_ds_export.cs" />
+    <Compile Include="his_ds_exportinfo.cs" />
+    <Compile Include="his_ds_import.cs" />
+    <Compile Include="his_ds_importinfo.cs" />
+    <Compile Include="his_ds_stock.cs" />
+    <Compile Include="his_hos_account.cs" />
+    <Compile Include="his_hos_account_log.cs" />
+    <Compile Include="his_hos_daily_statement.cs" />
+    <Compile Include="his_hos_daily_statement_itemty.cs" />
+    <Compile Include="his_hos_medical_record.cs" />
+    <Compile Include="his_hos_monthly_statement.cs" />
+    <Compile Include="his_hos_monthly_statement_item.cs" />
+    <Compile Include="his_hos_order_item.cs" />
+    <Compile Include="his_hos_prescription.cs" />
+    <Compile Include="his_hos_pres_detail_cancle.cs" />
+    <Compile Include="his_hos_receipt.cs" />
+    <Compile Include="his_hos_receipt_cancle.cs" />
+    <Compile Include="his_hos_receipt_detail.cs" />
+    <Compile Include="his_hos_receipt_detail_cancle.cs" />
+    <Compile Include="his_pm_check.cs" />
+    <Compile Include="his_pm_checkinfo.cs" />
+    <Compile Include="his_pm_export.cs" />
+    <Compile Include="his_pm_exportinfo.cs" />
+    <Compile Include="his_pm_import.cs" />
+    <Compile Include="his_pm_importinfo.cs" />
+    <Compile Include="his_pm_stock.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HisClient.DAL\HisClient.DAL.csproj">
+      <Project>{B1394F79-577B-444B-965E-25BFFE39FEB4}</Project>
+      <Name>HisClient.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HisClient.Model\HisClient.Model.csproj">
+      <Project>{D50AA169-4E58-4021-B615-F168ED7A6E0D}</Project>
+      <Name>HisClient.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
