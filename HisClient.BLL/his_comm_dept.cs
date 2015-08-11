@@ -81,28 +81,28 @@ namespace HisClient.BLL {
 		{
 			List<HisClient.Model.his_comm_dept> modelList = new List<HisClient.Model.his_comm_dept>();
 			int rowsCount = dt.Rows.Count;
-			if (rowsCount > 0)
-			{
-				HisClient.Model.his_comm_dept model;
-				for (int n = 0; n < rowsCount; n++)
-				{
-					model = new HisClient.Model.his_comm_dept();					
-																	model.ID= dt.Rows[n]["ID"].ToString();
-																																model.DEPT_CODE= dt.Rows[n]["DEPT_CODE"].ToString();
-																																model.DEPT_NAME= dt.Rows[n]["DEPT_NAME"].ToString();
-																																model.HELP_CODE= dt.Rows[n]["HELP_CODE"].ToString();
-																																model.DEPT_TYPE= dt.Rows[n]["DEPT_TYPE"].ToString();
-																																model.HOSPITAL_CODE= dt.Rows[n]["HOSPITAL_CODE"].ToString();
-																												if(dt.Rows[n]["CREATE_DATE"].ToString()!="")
-				{
-					model.CREATE_DATE=DateTime.Parse(dt.Rows[n]["CREATE_DATE"].ToString());
-				}
-																																				model.CREATE_BY= dt.Rows[n]["CREATE_BY"].ToString();
-																						
-				
-					modelList.Add(model);
-				}
-			}
+            if (rowsCount > 0)
+            {
+                HisClient.Model.his_comm_dept model;
+                for (int n = 0; n < rowsCount; n++)
+                {
+                    model = new HisClient.Model.his_comm_dept();
+                    model.ID = dt.Rows[n]["ID"].ToString();
+                    model.DEPT_CODE = dt.Rows[n]["DEPT_CODE"].ToString();
+                    model.DEPT_NAME = dt.Rows[n]["DEPT_NAME"].ToString();
+                    model.HELP_CODE = dt.Rows[n]["HELP_CODE"].ToString();
+                    model.DEPT_TYPE = dt.Rows[n]["DEPT_TYPE"].ToString();
+                    model.HOSPITAL_CODE = dt.Rows[n]["HOSPITAL_CODE"].ToString();
+                    if (dt.Rows[n]["CREATE_DATE"].ToString() != "")
+                    {
+                        model.CREATE_DATE = DateTime.Parse(dt.Rows[n]["CREATE_DATE"].ToString());
+                    }
+                    model.CREATE_BY = dt.Rows[n]["CREATE_BY"].ToString();
+
+
+                    modelList.Add(model);
+                }
+            }
 			return modelList;
 		}
 

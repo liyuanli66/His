@@ -18,13 +18,14 @@ namespace HisClient.Models.DICT
 
         #region 初始化
         HisClient.BLL.his_comm_dict_info bll = new HisClient.BLL.his_comm_dict_info();
-        private string strWhere = string.Empty;
+        HisClient.BLL.his_comm_dict_type blltype = new HisClient.BLL.his_comm_dict_type();
         ComFunc comfun = new ComFunc();
         #endregion
 
         #region 事件
         private void frmCommDictInfo_Load(object sender, EventArgs e)
         {
+            DataBindType();
             Query("");
         }
         /// <summary>
@@ -34,12 +35,15 @@ namespace HisClient.Models.DICT
         /// <param name="e"></param>
         private void btnQuery_Click(object sender, EventArgs e)
         {
+            string strWhere = string.Empty;
+            if (this.gLDictType.EditValue.ToString() != string.Empty)
+                strWhere += " TYPE_CODE ='" + gLDictType.EditValue.ToString() + "'";
 
             if (txtCode.Text != string.Empty)
-                strWhere += " and EFFICACY_CODE like '%" + txtCode.Text + "%'";
+                strWhere += " and DICT_CODE like '%" + txtCode.Text + "%'";
 
             if (txtName.Text != string.Empty)
-                strWhere += " and EFFICACY_NAME like '%" + txtName.Text + "%'";
+                strWhere += " and DICT_NAME like '%" + txtName.Text + "%'";
 
             if (txtHelpCode.Text != string.Empty)
                 strWhere += " and HELP_CODE like '%" + txtHelpCode.Text + "%'";
@@ -65,6 +69,11 @@ namespace HisClient.Models.DICT
                     MessageBox.Show("名称不可为空！");
                     return;
                 }
+                if (gLDictType.EditValue.ToString() == string.Empty)
+                {
+                    MessageBox.Show("类型不可为空！");
+                    return;
+                }
                 try
                 {
                     HisClient.Model.his_comm_dict_info model = new Model.his_comm_dict_info();
@@ -72,6 +81,7 @@ namespace HisClient.Models.DICT
                     model.DICT_CODE = txtCode.Text.Trim();
                     model.DICT_NAME = txtName.Text.Trim();
                     model.HELP_CODE = txtHelpCode.Text.Trim();
+                    model.TYPE_CODE = gLDictType.EditValue.ToString();
                     bll.Add(model);
                     MessageBox.Show("保存成功！");
                     clear();
@@ -101,6 +111,11 @@ namespace HisClient.Models.DICT
                     MessageBox.Show("名称不可为空！");
                     return;
                 }
+                if (gLDictType.EditValue.ToString() == string.Empty) 
+                {
+                    MessageBox.Show("类型不可为空！");
+                    return;
+                }
                 try
                 {
                     HisClient.Model.his_comm_dict_info model = new Model.his_comm_dict_info();
@@ -108,6 +123,7 @@ namespace HisClient.Models.DICT
                     model.DICT_CODE = txtCode.Text.Trim();
                     model.DICT_NAME = txtName.Text.Trim();
                     model.HELP_CODE = txtHelpCode.Text.Trim();
+                    model.TYPE_CODE = gLDictType.EditValue.ToString();
                     bll.Update(model);
                     MessageBox.Show("更新成功！");
                     clear();
@@ -147,10 +163,17 @@ namespace HisClient.Models.DICT
         {
             if (e.KeyCode == Keys.Enter)
             {
-                this.lpdDictType.Focus();
+                this.gLDictType.Focus();
             }
         }
         private void lpdDictType_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.gLDictType.Focus();
+            }
+        }
+        private void gLDictType_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -185,12 +208,17 @@ namespace HisClient.Models.DICT
             {
                 txtName.ID = rowIdObj.ToString();
 
-                object rowCodeObj = gridView1.GetRowCellValue(intRowHandle, "EFFICACY_CODE");
+                object rowTypeObj = gridView1.GetRowCellValue(intRowHandle, "TYPE_CODE");
+                if (rowTypeObj != null)
+                {
+                    this.gLDictType.EditValue = rowTypeObj.ToString();
+                }
+                object rowCodeObj = gridView1.GetRowCellValue(intRowHandle, "DICT_CODE");
                 if (rowCodeObj != null)
                 {
                     this.txtCode.Text = rowCodeObj.ToString();
                 }
-                object rowNameObj = gridView1.GetRowCellValue(intRowHandle, "EFFICACY_NAME");
+                object rowNameObj = gridView1.GetRowCellValue(intRowHandle, "DICT_NAME");
                 if (rowNameObj != null)
                 {
                     this.txtName.Text = rowNameObj.ToString();
@@ -231,10 +259,51 @@ namespace HisClient.Models.DICT
             txtCode.Text = string.Empty;
             txtName.Text = string.Empty;
             txtHelpCode.Text = string.Empty;
+            gLDictType.EditValue = string.Empty;
+            gLDictType.Text = string.Empty;
             Query("");
         }
-        #endregion       
+        private void DataBindType()
+        {
+            try
+            {
+                DataSet dsDeptType = new DataSet();
+                dsDeptType = blltype.GetList("");
 
+                this.gLDictType.Properties.View.OptionsBehavior.AutoPopulateColumns = false;
+                gLDictType.Properties.DataSource = dsDeptType.Tables[0];
+                gLDictType.Properties.DisplayMember = "TYPE_NAME";
+                gLDictType.Properties.ValueMember = "ID";
+
+                DevExpress.XtraGrid.Columns.GridColumn col1 = this.gLDictType.Properties.View.Columns.AddField("ID");
+                col1.VisibleIndex = 0;
+                col1.Caption = "ID";
+                DevExpress.XtraGrid.Columns.GridColumn col2 = this.gLDictType.Properties.View.Columns.AddField("TYPE_CODE");
+                col2.VisibleIndex = 1;
+                col2.Caption = "编码";
+                DevExpress.XtraGrid.Columns.GridColumn col3 = this.gLDictType.Properties.View.Columns.AddField("TYPE_NAME");
+                col3.VisibleIndex = 2;
+                col3.Caption = "名称";
+                DevExpress.XtraGrid.Columns.GridColumn col4 = this.gLDictType.Properties.View.Columns.AddField("HELP_CODE");
+                col3.VisibleIndex = 3;
+                col3.Caption = "助记符";
+
+
+                this.gLDictType.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+                this.gLDictType.Properties.View.BestFitColumns();
+                this.gLDictType.Properties.ShowFooter = false;
+                this.gLDictType.Properties.View.OptionsView.ShowAutoFilterRow = false;
+                this.gLDictType.Properties.AutoComplete = false;
+                this.gLDictType.Properties.ImmediatePopup = true;
+                // this.gridLookUpEdit1.Properties.PopupFilterMode = PopupFilterMode.Contains;
+                this.gLDictType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        #endregion       
 
     }
 }

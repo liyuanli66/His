@@ -31,33 +31,35 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCommDictInfo));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gLDictType = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.txtHelpCode = new HisClient.Controls.zqctext(this.components);
             this.txtCode = new HisClient.Controls.zqctext(this.components);
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.txtName = new HisClient.Controls.zqctext(this.components);
             this.btnClear = new DevExpress.XtraEditors.SimpleButton();
+            this.txtName = new HisClient.Controls.zqctext(this.components);
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             this.btnUpdate = new DevExpress.XtraEditors.SimpleButton();
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.btnQuery = new DevExpress.XtraEditors.SimpleButton();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.lpdDictType = new DevExpress.XtraEditors.LookUpEdit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gLDictType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHelpCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lpdDictType.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.lpdDictType);
+            this.groupBox1.Controls.Add(this.gLDictType);
             this.groupBox1.Controls.Add(this.labelControl4);
             this.groupBox1.Controls.Add(this.txtHelpCode);
             this.groupBox1.Controls.Add(this.txtCode);
@@ -78,13 +80,40 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "字典信息";
             // 
+            // gLDictType
+            // 
+            this.gLDictType.EditValue = "";
+            this.gLDictType.Location = new System.Drawing.Point(298, 21);
+            this.gLDictType.Name = "gLDictType";
+            this.gLDictType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.gLDictType.Properties.View = this.gridLookUpEdit1View;
+            this.gLDictType.Size = new System.Drawing.Size(142, 20);
+            this.gLDictType.TabIndex = 2;
+            this.gLDictType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gLDictType_KeyDown);
+            // 
+            // gridLookUpEdit1View
+            // 
+            this.gridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridLookUpEdit1View.Name = "gridLookUpEdit1View";
+            this.gridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Location = new System.Drawing.Point(244, 22);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(48, 14);
+            this.labelControl4.TabIndex = 25;
+            this.labelControl4.Text = "字典类型";
+            // 
             // txtHelpCode
             // 
             this.txtHelpCode.EnterToTable = false;
             this.txtHelpCode.ID = "";
             this.txtHelpCode.Location = new System.Drawing.Point(300, 49);
             this.txtHelpCode.Name = "txtHelpCode";
-            this.txtHelpCode.Size = new System.Drawing.Size(116, 20);
+            this.txtHelpCode.Size = new System.Drawing.Size(142, 20);
             this.txtHelpCode.TabIndex = 4;
             // 
             // txtCode
@@ -121,16 +150,6 @@
             this.labelControl1.TabIndex = 20;
             this.labelControl1.Text = "编码";
             // 
-            // txtName
-            // 
-            this.txtName.EnterToTable = false;
-            this.txtName.ID = "";
-            this.txtName.Location = new System.Drawing.Point(76, 49);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(142, 20);
-            this.txtName.TabIndex = 3;
-            this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtName_KeyDown);
-            // 
             // btnClear
             // 
             this.btnClear.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.Image")));
@@ -140,6 +159,16 @@
             this.btnClear.TabIndex = 19;
             this.btnClear.Text = "清空";
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // txtName
+            // 
+            this.txtName.EnterToTable = false;
+            this.txtName.ID = "";
+            this.txtName.Location = new System.Drawing.Point(76, 49);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(142, 20);
+            this.txtName.TabIndex = 3;
+            this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtName_KeyDown);
             // 
             // btnDelete
             // 
@@ -198,24 +227,6 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView1_FocusedRowChanged);
             // 
-            // labelControl4
-            // 
-            this.labelControl4.Location = new System.Drawing.Point(244, 22);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(48, 14);
-            this.labelControl4.TabIndex = 25;
-            this.labelControl4.Text = "字典类型";
-            // 
-            // lpdDictType
-            // 
-            this.lpdDictType.Location = new System.Drawing.Point(300, 19);
-            this.lpdDictType.Name = "lpdDictType";
-            this.lpdDictType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lpdDictType.Size = new System.Drawing.Size(117, 20);
-            this.lpdDictType.TabIndex = 2;
-            this.lpdDictType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lpdDictType_KeyDown);
-            // 
             // frmCommDictInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -228,12 +239,13 @@
             this.Load += new System.EventHandler(this.frmCommDictInfo_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gLDictType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHelpCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lpdDictType.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -255,6 +267,7 @@
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.LookUpEdit lpdDictType;
+        private DevExpress.XtraEditors.GridLookUpEdit gLDictType;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridLookUpEdit1View;
     }
 }

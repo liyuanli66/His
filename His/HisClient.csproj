@@ -136,6 +136,9 @@
     <EmbeddedResource Include="Models\DICT\frmCommDictType.resx">
       <DependentUpon>frmCommDictType.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Models\DICT\frmCommDoctor.resx">
+      <DependentUpon>frmCommDoctor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Models\DICT\frmCommDosage.resx">
       <DependentUpon>frmCommDosage.cs</DependentUpon>
     </EmbeddedResource>

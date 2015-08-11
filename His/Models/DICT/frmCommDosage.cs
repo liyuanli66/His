@@ -18,7 +18,6 @@ namespace HisClient.Models.DICT
 
         #region 初始化
         HisClient.BLL.his_comm_dosage bll = new HisClient.BLL.his_comm_dosage();
-        private string strWhere = string.Empty;
         ComFunc comfun = new ComFunc();
         #endregion
 
@@ -34,9 +33,9 @@ namespace HisClient.Models.DICT
         /// <param name="e"></param>
         private void btnQuery_Click(object sender, EventArgs e)
         {
-
+            string strWhere = string.Empty;
             if (txtCode.Text != string.Empty)
-                strWhere += " and DOSAGE_CODE like '%" + txtCode.Text + "%'";
+                strWhere += " DOSAGE_CODE like '%" + txtCode.Text + "%'";
 
             if (txtName.Text != string.Empty)
                 strWhere += " and DOSAGE_NAME like '%" + txtName.Text + "%'";

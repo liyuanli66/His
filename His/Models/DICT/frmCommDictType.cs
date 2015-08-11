@@ -18,12 +18,11 @@ namespace HisClient.Models.DICT
 
         #region 初始化
         HisClient.BLL.his_comm_dict_type bll = new HisClient.BLL.his_comm_dict_type();
-        private string strWhere = string.Empty;
         ComFunc comfun = new ComFunc();
         #endregion
 
         #region 事件
-        private void frmCommDept_Load(object sender, EventArgs e)
+        private void frmCommDictType_Load(object sender, EventArgs e)
         {
             Query("");
         }
@@ -34,9 +33,9 @@ namespace HisClient.Models.DICT
         /// <param name="e"></param>
         private void btnQuery_Click(object sender, EventArgs e)
         {
-
+            string strWhere = string.Empty;
             if (txtCode.Text != string.Empty)
-                strWhere += " and TYPE_CODE like '%" + txtCode.Text + "%'";
+                strWhere += " TYPE_CODE like '%" + txtCode.Text + "%'";
 
             if (txtName.Text != string.Empty)
                 strWhere += " and TYPE_NAME like '%" + txtName.Text + "%'";

@@ -18,34 +18,17 @@ namespace HisClient.Models.DICT
 
         #region 初始化窗体
         HisClient.BLL.his_comm_dept bll = new HisClient.BLL.his_comm_dept();
-        private string strWhere = string.Empty;
+        HisClient.BLL.his_comm_dict_info dictbll = new BLL.his_comm_dict_info();
+
         #endregion
 
         #region 事件
         private void frmCommDept_Load(object sender, EventArgs e)
         {
+            DataBindDeptType();
+            DataBindHospital();
             Query("");
-            //this.gridLookUpEdit1.Properties.View.OptionsBehavior.AutoPopulateColumns = false;
-            //gridLookUpEdit1.Properties.DataSource = dts;
-            //gridLookUpEdit1.Properties.DisplayMember = "jc";
-            //gridLookUpEdit1.Properties.ValueMember = "Name";
-
-            //GridColumn col1 = this.gridLookUpEdit1.Properties.View.Columns.AddField("jc");
-            //col1.VisibleIndex = 0;
-            //col1.Caption = "简称";
-            //GridColumn col2 = this.gridLookUpEdit1.Properties.View.Columns.AddField("Name");
-            //col2.VisibleIndex = 1;
-            //col2.Caption = "名称";
-
-
-            //this.gridLookUpEdit1.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-            //this.gridLookUpEdit1.Properties.View.BestFitColumns();
-            //this.gridLookUpEdit1.Properties.ShowFooter = false;
-            //this.gridLookUpEdit1.Properties.View.OptionsView.ShowAutoFilterRow = false;
-            //this.gridLookUpEdit1.Properties.AutoComplete = false;
-            //this.gridLookUpEdit1.Properties.ImmediatePopup = true;
-            //// this.gridLookUpEdit1.Properties.PopupFilterMode = PopupFilterMode.Contains;
-            //this.gridLookUpEdit1.Properties.TextEditStyle = TextEditStyles.Standard;
+            
         }
         /// <summary>
         /// 查询
@@ -54,9 +37,9 @@ namespace HisClient.Models.DICT
         /// <param name="e"></param>
         private void btnQuery_Click(object sender, EventArgs e)
         {
-
+            string strWhere = string.Empty;
             if (txtCode.Text != string.Empty)
-                strWhere += " and DEPT_CODE like '%" + txtCode.Text + "%'";
+                strWhere += " DEPT_CODE like '%" + txtCode.Text + "%'";
 
             if (txtName.Text != string.Empty)
                 strWhere += " and DEPT_NAME like '%" + txtName.Text + "%'";
@@ -94,7 +77,7 @@ namespace HisClient.Models.DICT
                 try
                 {
                     HisClient.Model.his_comm_dept model = new Model.his_comm_dept();
-                    model.ID = "123";
+                    model.ID = "1";
                     model.DEPT_CODE = txtCode.Text.Trim();
                     model.DEPT_NAME = txtName.Text.Trim();
                     model.HELP_CODE = txtHelpCode.Text.Trim();
@@ -119,7 +102,7 @@ namespace HisClient.Models.DICT
         /// <param name="e"></param>
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (txtName.ID == string.Empty)
+            if (txtName.ID != string.Empty)
             {
                 if (txtCode.Text.Trim() == string.Empty)
                 {
@@ -238,6 +221,16 @@ namespace HisClient.Models.DICT
                     this.txtHelpCode.Text = rowHelpCodeObj.ToString();
                 }
                 //科室类型、医院赋值
+                object rowTypeObj = gridView1.GetRowCellValue(intRowHandle, "DEPT_TYPE");
+                if (rowTypeObj != null)
+                {
+                    this.lpdDeptType.EditValue = rowTypeObj.ToString();
+                }
+                object rowHospitalObj = gridView1.GetRowCellValue(intRowHandle, "HOSPITAL_CODE");
+                if (rowHospitalObj != null)
+                {
+                    this.lpdHospital.EditValue = rowHospitalObj.ToString();
+                }
             }
         }
         #endregion
@@ -263,6 +256,86 @@ namespace HisClient.Models.DICT
             lpdHospital.Text = string.Empty;
             lpdHospital.EditValue = string.Empty;
             Query("");
+        }
+        private void DataBindDeptType() 
+        {
+            try
+            {
+                DataSet dsDeptType = new DataSet();
+                dsDeptType = dictbll.GetList("  TYPE_CODE='DEPT_TYPE'");
+
+                this.lpdDeptType.Properties.View.OptionsBehavior.AutoPopulateColumns = false;
+                lpdDeptType.Properties.DataSource = dsDeptType.Tables[0];
+                lpdDeptType.Properties.DisplayMember = "DICT_NAME";
+                lpdDeptType.Properties.ValueMember = "DICT_CODE";
+
+                DevExpress.XtraGrid.Columns.GridColumn col1 = this.lpdDeptType.Properties.View.Columns.AddField("ID");
+                col1.VisibleIndex = 0;
+                col1.Caption = "ID";
+                DevExpress.XtraGrid.Columns.GridColumn col2 = this.lpdDeptType.Properties.View.Columns.AddField("DICT_CODE");
+                col2.VisibleIndex = 0;
+                col2.Caption = "编码";
+                DevExpress.XtraGrid.Columns.GridColumn col3 = this.lpdDeptType.Properties.View.Columns.AddField("DICT_NAME");
+                col3.VisibleIndex = 1;
+                col3.Caption = "名称";
+                DevExpress.XtraGrid.Columns.GridColumn col4 = this.lpdDeptType.Properties.View.Columns.AddField("HELP_CODE");
+                col3.VisibleIndex = 3;
+                col3.Caption = "助记符";
+
+
+                this.lpdDeptType.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+                this.lpdDeptType.Properties.View.BestFitColumns();
+                this.lpdDeptType.Properties.ShowFooter = false;
+                this.lpdDeptType.Properties.View.OptionsView.ShowAutoFilterRow = false;
+                this.lpdDeptType.Properties.AutoComplete = false;
+                this.lpdDeptType.Properties.ImmediatePopup = true;
+                // this.gridLookUpEdit1.Properties.PopupFilterMode = PopupFilterMode.Contains;
+                this.lpdDeptType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        private void DataBindHospital()
+        {
+            try
+            {
+                DataSet dsDeptType = new DataSet();
+                dsDeptType = dictbll.GetList("  TYPE_CODE='HOSPITAL'");
+
+                this.lpdHospital.Properties.View.OptionsBehavior.AutoPopulateColumns = false;
+                lpdHospital.Properties.DataSource = dsDeptType.Tables[0];
+                lpdHospital.Properties.DisplayMember = "DICT_NAME";
+                lpdHospital.Properties.ValueMember = "DICT_CODE";
+
+                DevExpress.XtraGrid.Columns.GridColumn col1 = this.lpdHospital.Properties.View.Columns.AddField("ID");
+                col1.VisibleIndex = 0;
+                col1.Caption = "ID";
+                DevExpress.XtraGrid.Columns.GridColumn col2 = this.lpdHospital.Properties.View.Columns.AddField("DICT_CODE");
+                col2.VisibleIndex = 0;
+                col2.Caption = "编码";
+                DevExpress.XtraGrid.Columns.GridColumn col3 = this.lpdHospital.Properties.View.Columns.AddField("DICT_NAME");
+                col3.VisibleIndex = 1;
+                col3.Caption = "名称";
+                DevExpress.XtraGrid.Columns.GridColumn col4 = this.lpdHospital.Properties.View.Columns.AddField("HELP_CODE");
+                col3.VisibleIndex = 3;
+                col3.Caption = "助记符";
+
+
+                this.lpdHospital.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+                this.lpdHospital.Properties.View.BestFitColumns();
+                this.lpdHospital.Properties.ShowFooter = false;
+                this.lpdHospital.Properties.View.OptionsView.ShowAutoFilterRow = false;
+                this.lpdHospital.Properties.AutoComplete = false;
+                this.lpdHospital.Properties.ImmediatePopup = true;
+                // this.gridLookUpEdit1.Properties.PopupFilterMode = PopupFilterMode.Contains;
+                this.lpdHospital.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
         #endregion     
 

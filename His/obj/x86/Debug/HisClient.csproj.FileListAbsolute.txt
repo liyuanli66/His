@@ -68,7 +68,6 @@ E:\GitHub\HIS\His\bin\Debug\MySql.Data.dll
 E:\GitHub\HIS\His\bin\Debug\HisClient.BLL.pdb
 E:\GitHub\HIS\His\bin\Debug\HisClient.Model.pdb
 E:\GitHub\HIS\His\bin\Debug\HisClient.DAL.pdb
-E:\GitHub\HIS\His\bin\Debug\zh-CN\ChnCharInfo.resources.dll
 E:\GitHub\HIS\His\obj\x86\Debug\HisClient.csprojResolveAssemblyReference.cache
 E:\GitHub\HIS\His\obj\x86\Debug\HisClient.Form1.resources
 E:\GitHub\HIS\His\obj\x86\Debug\HisClient.frmMain.resources
@@ -78,3 +77,6 @@ E:\GitHub\HIS\His\obj\x86\Debug\HisClient.Properties.Resources.resources
 E:\GitHub\HIS\His\obj\x86\Debug\HisClient.csproj.GenerateResource.Cache
 E:\GitHub\HIS\His\obj\x86\Debug\HisClient.exe.licenses
 E:\GitHub\HIS\His\obj\x86\Debug\HisClient.Models.DICT.frmCommDosage.resources
+E:\GitHub\His\His\obj\x86\Debug\HisClient.Models.DICT.frmCommDictInfo.resources
+E:\GitHub\His\His\obj\x86\Debug\HisClient.Models.DICT.frmCommDictType.resources
+E:\GitHub\His\His\obj\x86\Debug\HisClient.Models.DICT.frmCommDoctor.resources

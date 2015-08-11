@@ -14,6 +14,20 @@ namespace HisClient.DAL
 		{}
 		#region  BasicMethod
 
+        /// <summary>
+        /// 是否存在该记录
+        /// </summary>
+        public bool Exists(string ID)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select count(1) from his_comm_doctor");
+            strSql.Append(" where ID=@ID ");
+            MySqlParameter[] parameters = {
+					new MySqlParameter("@ID", MySqlDbType.VarChar,18)			};
+            parameters[0].Value = ID;
+
+            return DbHelperMySQL.Exists(strSql.ToString(), parameters);
+        }
 
 
 		/// <summary>
@@ -23,10 +37,10 @@ namespace HisClient.DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("insert into his_comm_doctor(");
-			strSql.Append("ID,DOCTOR_CODE,DOCTOR_NAME,DEPT_CODE,HISPITAL_CODE,DOCTOR_SEX,DOCTOR_TEL,DOCTOR_NATION,MERRIAGE_CODE,DOCTOR_EMAIL,DOCTOR_TITLE,DOCTOR_TITLEGRADE,HELP_CODE,REMARK)");
+            strSql.Append("ID,DOCTOR_CODE,DOCTOR_NAME,DEPT_CODE,HISPITAL_CODE,DOCTOR_SEX,DOCTOR_TEL,DOCTOR_NATION,MERRIAGE_CODE,DOCTOR_EMAIL,DOCTOR_TITLE,DOCTOR_TITLEGRADE,HELP_CODE,REMARK,USER_TYPE)");
 			strSql.Append(" values (");
-			strSql.Append("@ID,@DOCTOR_CODE,@DOCTOR_NAME,@DEPT_CODE,@HISPITAL_CODE,@DOCTOR_SEX,@DOCTOR_TEL,@DOCTOR_NATION,@MERRIAGE_CODE,@DOCTOR_EMAIL,@DOCTOR_TITLE,@DOCTOR_TITLEGRADE,@HELP_CODE,@REMARK)");
-			MySqlParameter[] parameters = {
+            strSql.Append("@ID,@DOCTOR_CODE,@DOCTOR_NAME,@DEPT_CODE,@HISPITAL_CODE,@DOCTOR_SEX,@DOCTOR_TEL,@DOCTOR_NATION,@MERRIAGE_CODE,@DOCTOR_EMAIL,@DOCTOR_TITLE,@DOCTOR_TITLEGRADE,@HELP_CODE,@REMARK,@USER_TYPE)");
+            MySqlParameter[] parameters = {
 					new MySqlParameter("@ID", MySqlDbType.VarChar,18),
 					new MySqlParameter("@DOCTOR_CODE", MySqlDbType.VarChar,18),
 					new MySqlParameter("@DOCTOR_NAME", MySqlDbType.VarChar,128),
@@ -40,7 +54,8 @@ namespace HisClient.DAL
 					new MySqlParameter("@DOCTOR_TITLE", MySqlDbType.VarChar,18),
 					new MySqlParameter("@DOCTOR_TITLEGRADE", MySqlDbType.VarChar,18),
 					new MySqlParameter("@HELP_CODE", MySqlDbType.VarChar,128),
-					new MySqlParameter("@REMARK", MySqlDbType.VarChar,128)};
+					new MySqlParameter("@REMARK", MySqlDbType.VarChar,128),
+                    new MySqlParameter("@USER_TYPE", MySqlDbType.VarChar,128)};
 			parameters[0].Value = model.ID;
 			parameters[1].Value = model.DOCTOR_CODE;
 			parameters[2].Value = model.DOCTOR_NAME;
@@ -54,7 +69,8 @@ namespace HisClient.DAL
 			parameters[10].Value = model.DOCTOR_TITLE;
 			parameters[11].Value = model.DOCTOR_TITLEGRADE;
 			parameters[12].Value = model.HELP_CODE;
-			parameters[13].Value = model.REMARK;
+            parameters[13].Value = model.REMARK;
+            parameters[14].Value = model.USER_TYPE;
 
 			int rows=DbHelperMySQL.ExecuteSql(strSql.ToString(),parameters);
 			if (rows > 0)
@@ -87,6 +103,7 @@ namespace HisClient.DAL
 			strSql.Append("DOCTOR_TITLEGRADE=@DOCTOR_TITLEGRADE,");
 			strSql.Append("HELP_CODE=@HELP_CODE,");
 			strSql.Append("REMARK=@REMARK");
+            strSql.Append("USER_TYPE=@USER_TYPE");
 			strSql.Append(" where ");
 			MySqlParameter[] parameters = {
 					new MySqlParameter("@ID", MySqlDbType.VarChar,18),
@@ -102,7 +119,8 @@ namespace HisClient.DAL
 					new MySqlParameter("@DOCTOR_TITLE", MySqlDbType.VarChar,18),
 					new MySqlParameter("@DOCTOR_TITLEGRADE", MySqlDbType.VarChar,18),
 					new MySqlParameter("@HELP_CODE", MySqlDbType.VarChar,128),
-					new MySqlParameter("@REMARK", MySqlDbType.VarChar,128)};
+					new MySqlParameter("@REMARK", MySqlDbType.VarChar,128),
+                    new MySqlParameter("@USER_TYPE", MySqlDbType.VarChar,128)};
 			parameters[0].Value = model.ID;
 			parameters[1].Value = model.DOCTOR_CODE;
 			parameters[2].Value = model.DOCTOR_NAME;
@@ -117,6 +135,7 @@ namespace HisClient.DAL
 			parameters[11].Value = model.DOCTOR_TITLEGRADE;
 			parameters[12].Value = model.HELP_CODE;
 			parameters[13].Value = model.REMARK;
+            parameters[14].Value = model.USER_TYPE;
 
 			int rows=DbHelperMySQL.ExecuteSql(strSql.ToString(),parameters);
 			if (rows > 0)
@@ -132,14 +151,14 @@ namespace HisClient.DAL
 		/// <summary>
 		/// 删除一条数据
 		/// </summary>
-		public bool Delete()
+        public bool Delete(string ID)
 		{
-			//该表无主键信息，请自定义主键/条件字段
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("delete from his_comm_doctor ");
-			strSql.Append(" where ");
-			MySqlParameter[] parameters = {
-			};
+            strSql.Append(" where ID=@ID ");
+            MySqlParameter[] parameters = {
+					new MySqlParameter("@ID", MySqlDbType.VarChar,18)			};
+            parameters[0].Value = ID;
 
 			int rows=DbHelperMySQL.ExecuteSql(strSql.ToString(),parameters);
 			if (rows > 0)
@@ -152,18 +171,36 @@ namespace HisClient.DAL
 			}
 		}
 
+        /// <summary>
+        /// 批量删除数据
+        /// </summary>
+        public bool DeleteList(string IDlist)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("delete from his_comm_doctor ");
+            strSql.Append(" where ID in (" + IDlist + ")  ");
+            int rows = DbHelperMySQL.ExecuteSql(strSql.ToString());
+            if (rows > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
-		public HisClient.Model.his_comm_doctor GetModel()
+		public HisClient.Model.his_comm_doctor GetModel(string ID)
 		{
-			//该表无主键信息，请自定义主键/条件字段
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select ID,DOCTOR_CODE,DOCTOR_NAME,DEPT_CODE,HISPITAL_CODE,DOCTOR_SEX,DOCTOR_TEL,DOCTOR_NATION,MERRIAGE_CODE,DOCTOR_EMAIL,DOCTOR_TITLE,DOCTOR_TITLEGRADE,HELP_CODE,REMARK from his_comm_doctor ");
-			strSql.Append(" where ");
-			MySqlParameter[] parameters = {
-			};
+            strSql.Append("select ID,DOCTOR_CODE,DOCTOR_NAME,DEPT_CODE,HISPITAL_CODE,DOCTOR_SEX,DOCTOR_TEL,DOCTOR_NATION,MERRIAGE_CODE,DOCTOR_EMAIL,DOCTOR_TITLE,DOCTOR_TITLEGRADE,HELP_CODE,REMARK,USER_TYPE from his_comm_doctor ");
+            strSql.Append(" where ID=@ID ");
+            MySqlParameter[] parameters = {
+					new MySqlParameter("@ID", MySqlDbType.VarChar,18)			};
+            parameters[0].Value = ID;
 
 			HisClient.Model.his_comm_doctor model=new HisClient.Model.his_comm_doctor();
 			DataSet ds=DbHelperMySQL.Query(strSql.ToString(),parameters);
@@ -242,6 +279,10 @@ namespace HisClient.DAL
 				{
 					model.REMARK=row["REMARK"].ToString();
 				}
+                if (row["USER_TYPE"] != null)
+                {
+                    model.USER_TYPE = row["USER_TYPE"].ToString();
+                }
 			}
 			return model;
 		}
@@ -252,7 +293,7 @@ namespace HisClient.DAL
 		public DataSet GetList(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select ID,DOCTOR_CODE,DOCTOR_NAME,DEPT_CODE,HISPITAL_CODE,DOCTOR_SEX,DOCTOR_TEL,DOCTOR_NATION,MERRIAGE_CODE,DOCTOR_EMAIL,DOCTOR_TITLE,DOCTOR_TITLEGRADE,HELP_CODE,REMARK ");
+            strSql.Append("select ID,DOCTOR_CODE,DOCTOR_NAME,DEPT_CODE,HISPITAL_CODE,DOCTOR_SEX,DOCTOR_TEL,DOCTOR_NATION,MERRIAGE_CODE,DOCTOR_EMAIL,DOCTOR_TITLE,DOCTOR_TITLEGRADE,HELP_CODE,REMARK,USER_TYPE ");
 			strSql.Append(" FROM his_comm_doctor ");
 			if(strWhere.Trim()!="")
 			{

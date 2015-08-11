@@ -35,11 +35,13 @@
             this.btnUpdate = new DevExpress.XtraEditors.SimpleButton();
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.btnQuery = new DevExpress.XtraEditors.SimpleButton();
-            this.lpdHospital = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.lpdDeptType = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lpdHospital = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.gridLookUpEdit2View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.lpdDeptType = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.txtHelpCode = new HisClient.Controls.zqctext(this.components);
             this.txtCode = new HisClient.Controls.zqctext(this.components);
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
@@ -48,9 +50,11 @@
             this.txtName = new HisClient.Controls.zqctext(this.components);
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            ((System.ComponentModel.ISupportInitialize)(this.lpdHospital.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lpdDeptType.Properties)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lpdHospital.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit2View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lpdDeptType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHelpCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
@@ -108,15 +112,6 @@
             this.btnQuery.Text = "查询";
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
-            // lpdHospital
-            // 
-            this.lpdHospital.Location = new System.Drawing.Point(274, 68);
-            this.lpdHospital.Name = "lpdHospital";
-            this.lpdHospital.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lpdHospital.Size = new System.Drawing.Size(338, 20);
-            this.lpdHospital.TabIndex = 9;
-            // 
             // labelControl5
             // 
             this.labelControl5.Location = new System.Drawing.Point(211, 71);
@@ -124,16 +119,6 @@
             this.labelControl5.Size = new System.Drawing.Size(48, 14);
             this.labelControl5.TabIndex = 8;
             this.labelControl5.Text = "所属医院";
-            // 
-            // lpdDeptType
-            // 
-            this.lpdDeptType.Location = new System.Drawing.Point(79, 68);
-            this.lpdDeptType.Name = "lpdDeptType";
-            this.lpdDeptType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lpdDeptType.Size = new System.Drawing.Size(117, 20);
-            this.lpdDeptType.TabIndex = 7;
-            this.lpdDeptType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lpdDeptType_KeyDown);
             // 
             // labelControl4
             // 
@@ -146,9 +131,9 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lpdHospital);
+            this.groupBox1.Controls.Add(this.lpdDeptType);
             this.groupBox1.Controls.Add(this.labelControl5);
             this.groupBox1.Controls.Add(this.btnClear);
-            this.groupBox1.Controls.Add(this.lpdDeptType);
             this.groupBox1.Controls.Add(this.txtHelpCode);
             this.groupBox1.Controls.Add(this.labelControl4);
             this.groupBox1.Controls.Add(this.btnDelete);
@@ -166,13 +151,47 @@
             this.groupBox1.Size = new System.Drawing.Size(915, 115);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "药品功效";
+            this.groupBox1.Text = "科室信息";
+            // 
+            // lpdHospital
+            // 
+            this.lpdHospital.Location = new System.Drawing.Point(268, 68);
+            this.lpdHospital.Name = "lpdHospital";
+            this.lpdHospital.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lpdHospital.Properties.View = this.gridLookUpEdit2View;
+            this.lpdHospital.Size = new System.Drawing.Size(338, 20);
+            this.lpdHospital.TabIndex = 26;
+            // 
+            // gridLookUpEdit2View
+            // 
+            this.gridLookUpEdit2View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridLookUpEdit2View.Name = "gridLookUpEdit2View";
+            this.gridLookUpEdit2View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridLookUpEdit2View.OptionsView.ShowGroupPanel = false;
+            // 
+            // lpdDeptType
+            // 
+            this.lpdDeptType.Location = new System.Drawing.Point(70, 68);
+            this.lpdDeptType.Name = "lpdDeptType";
+            this.lpdDeptType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lpdDeptType.Properties.View = this.gridLookUpEdit1View;
+            this.lpdDeptType.Size = new System.Drawing.Size(100, 20);
+            this.lpdDeptType.TabIndex = 25;
+            // 
+            // gridLookUpEdit1View
+            // 
+            this.gridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridLookUpEdit1View.Name = "gridLookUpEdit1View";
+            this.gridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
             // txtHelpCode
             // 
             this.txtHelpCode.EnterToTable = false;
             this.txtHelpCode.ID = "";
-            this.txtHelpCode.Location = new System.Drawing.Point(488, 22);
+            this.txtHelpCode.Location = new System.Drawing.Point(475, 22);
             this.txtHelpCode.Name = "txtHelpCode";
             this.txtHelpCode.Size = new System.Drawing.Size(135, 20);
             this.txtHelpCode.TabIndex = 3;
@@ -182,15 +201,15 @@
             // 
             this.txtCode.EnterToTable = false;
             this.txtCode.ID = "";
-            this.txtCode.Location = new System.Drawing.Point(48, 22);
+            this.txtCode.Location = new System.Drawing.Point(70, 22);
             this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(135, 20);
+            this.txtCode.Size = new System.Drawing.Size(113, 20);
             this.txtCode.TabIndex = 1;
             this.txtCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCode_KeyDown);
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(439, 26);
+            this.labelControl6.Location = new System.Drawing.Point(432, 26);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(36, 14);
             this.labelControl6.TabIndex = 24;
@@ -206,7 +225,7 @@
             // 
             // labelControl8
             // 
-            this.labelControl8.Location = new System.Drawing.Point(13, 26);
+            this.labelControl8.Location = new System.Drawing.Point(40, 25);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(24, 14);
             this.labelControl8.TabIndex = 20;
@@ -249,10 +268,12 @@
             this.Name = "frmCommDept";
             this.Text = "科室维护";
             this.Load += new System.EventHandler(this.frmCommDept_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.lpdHospital.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lpdDeptType.Properties)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lpdHospital.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit2View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lpdDeptType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHelpCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).EndInit();
@@ -264,13 +285,11 @@
 
         #endregion
 
-        private DevExpress.XtraEditors.LookUpEdit lpdDeptType;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.SimpleButton btnDelete;
         private DevExpress.XtraEditors.SimpleButton btnUpdate;
         private DevExpress.XtraEditors.SimpleButton btnAdd;
         private DevExpress.XtraEditors.SimpleButton btnQuery;
-        private DevExpress.XtraEditors.LookUpEdit lpdHospital;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.SimpleButton btnClear;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -282,5 +301,9 @@
         private Controls.zqctext txtName;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraEditors.GridLookUpEdit lpdHospital;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridLookUpEdit2View;
+        private DevExpress.XtraEditors.GridLookUpEdit lpdDeptType;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridLookUpEdit1View;
     }
 }
