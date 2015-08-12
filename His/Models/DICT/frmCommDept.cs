@@ -81,8 +81,14 @@ namespace HisClient.Models.DICT
                     model.DEPT_CODE = txtCode.Text.Trim();
                     model.DEPT_NAME = txtName.Text.Trim();
                     model.HELP_CODE = txtHelpCode.Text.Trim();
-                    model.DEPT_TYPE = lpdDeptType.EditValue.ToString();
-                    model.HOSPITAL_CODE = lpdHospital.EditValue.ToString();
+                    if (lpdDeptType.EditValue != null)
+                    {
+                        model.DEPT_TYPE = lpdDeptType.EditValue.ToString();
+                    }
+                    if (lpdHospital.EditValue != null)
+                    {
+                        model.HOSPITAL_CODE = lpdHospital.EditValue.ToString();
+                    }
                     model.CREATE_DATE = DateTime.Now;
                     model.CREATE_BY = "登陆";
                     bll.Add(model);
@@ -183,12 +189,18 @@ namespace HisClient.Models.DICT
         }
         private void txtHelpCode_KeyDown(object sender, KeyEventArgs e)
         {
-            lpdDeptType.Focus();
+            if (e.KeyCode == Keys.Enter)
+            {
+                lpdDeptType.Focus();
+            }
         }
 
         private void lpdDeptType_KeyDown(object sender, KeyEventArgs e)
         {
-            lpdHospital.Focus();
+            if (e.KeyCode == Keys.Enter)
+            {
+                lpdHospital.Focus();
+            }
         }
         /// <summary>
         /// 当焦点行发生改变时执行 获取选中焦点行id
@@ -198,38 +210,40 @@ namespace HisClient.Models.DICT
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             int intRowHandle = e.FocusedRowHandle;
-
-            object rowIdObj = gridView1.GetRowCellValue(intRowHandle, "ID");
-
-            if (DBNull.Value != rowIdObj)//做个判断否则获取不到id后报错
+            if (intRowHandle >= 0)
             {
-                txtName.ID = rowIdObj.ToString();
+                object rowIdObj = gridView1.GetRowCellValue(intRowHandle, "ID");
 
-                object rowCodeObj = gridView1.GetRowCellValue(intRowHandle, "DEPT_CODE");
-                if (rowCodeObj != null)
+                if (DBNull.Value != rowIdObj)//做个判断否则获取不到id后报错
                 {
-                    this.txtCode.Text = rowCodeObj.ToString();
-                }
-                object rowNameObj = gridView1.GetRowCellValue(intRowHandle, "DEPT_NAME");
-                if (rowNameObj != null)
-                {
-                    this.txtName.Text = rowNameObj.ToString();
-                }
-                object rowHelpCodeObj = gridView1.GetRowCellValue(intRowHandle, "HELP_CODE");
-                if (rowHelpCodeObj != null)
-                {
-                    this.txtHelpCode.Text = rowHelpCodeObj.ToString();
-                }
-                //科室类型、医院赋值
-                object rowTypeObj = gridView1.GetRowCellValue(intRowHandle, "DEPT_TYPE");
-                if (rowTypeObj != null)
-                {
-                    this.lpdDeptType.EditValue = rowTypeObj.ToString();
-                }
-                object rowHospitalObj = gridView1.GetRowCellValue(intRowHandle, "HOSPITAL_CODE");
-                if (rowHospitalObj != null)
-                {
-                    this.lpdHospital.EditValue = rowHospitalObj.ToString();
+                    txtName.ID = rowIdObj.ToString();
+
+                    object rowCodeObj = gridView1.GetRowCellValue(intRowHandle, "DEPT_CODE");
+                    if (rowCodeObj != null)
+                    {
+                        this.txtCode.Text = rowCodeObj.ToString();
+                    }
+                    object rowNameObj = gridView1.GetRowCellValue(intRowHandle, "DEPT_NAME");
+                    if (rowNameObj != null)
+                    {
+                        this.txtName.Text = rowNameObj.ToString();
+                    }
+                    object rowHelpCodeObj = gridView1.GetRowCellValue(intRowHandle, "HELP_CODE");
+                    if (rowHelpCodeObj != null)
+                    {
+                        this.txtHelpCode.Text = rowHelpCodeObj.ToString();
+                    }
+                    //科室类型、医院赋值
+                    object rowTypeObj = gridView1.GetRowCellValue(intRowHandle, "DEPT_TYPE");
+                    if (rowTypeObj != null)
+                    {
+                        this.lpdDeptType.EditValue = rowTypeObj.ToString();
+                    }
+                    object rowHospitalObj = gridView1.GetRowCellValue(intRowHandle, "HOSPITAL_CODE");
+                    if (rowHospitalObj != null)
+                    {
+                        this.lpdHospital.EditValue = rowHospitalObj.ToString();
+                    }
                 }
             }
         }
@@ -242,7 +256,18 @@ namespace HisClient.Models.DICT
             DataSet ds = new DataSet();
             ds = bll.GetList(strw);
             //grid
-            gridControl1.DataSource = ds.Tables[0];            
+            gridControl1.DataSource = ds.Tables[0];
+            gridView1.Columns.Clear();
+            ComFunc comfun = new ComFunc();
+            comfun.dgvstyle(gridView1, 0, "ID", "序号", 5, true, true, DevExpress.Utils.HorzAlignment.Center, DevExpress.XtraGrid.Columns.FixedStyle.Left, true);
+            comfun.dgvstyle(gridView1, 1, "DEPT_CODE", "科室编码", 15, true, true, DevExpress.Utils.HorzAlignment.Center, DevExpress.XtraGrid.Columns.FixedStyle.Left, true);
+            comfun.dgvstyle(gridView1, 2, "DEPT_NAME", "科室名称", 15, true, true, DevExpress.Utils.HorzAlignment.Center, DevExpress.XtraGrid.Columns.FixedStyle.Left, true);
+            comfun.dgvstyle(gridView1, 3, "HELP_CODE", "助记符", 15, true, true, DevExpress.Utils.HorzAlignment.Center, DevExpress.XtraGrid.Columns.FixedStyle.Left, true);
+            comfun.dgvstyle(gridView1, 4, "DEPT_TYPE", "科室类型", 15, true, true, DevExpress.Utils.HorzAlignment.Center, DevExpress.XtraGrid.Columns.FixedStyle.Left, true);
+            comfun.dgvstyle(gridView1, 5, "HOSPITAl_CODE", "所属医院", 15, true, true, DevExpress.Utils.HorzAlignment.Center, DevExpress.XtraGrid.Columns.FixedStyle.Left, true);
+            comfun.dgvstyle(gridView1, 6, "CREATE_DATE", "创建时间", 15, true, true, DevExpress.Utils.HorzAlignment.Center, DevExpress.XtraGrid.Columns.FixedStyle.Left, true);
+            comfun.dgvstyle(gridView1, 7, "CREATE_BY", "创建人", 15, true, true, DevExpress.Utils.HorzAlignment.Center, DevExpress.XtraGrid.Columns.FixedStyle.Left, true);
+
         }
 
         private void clear() 

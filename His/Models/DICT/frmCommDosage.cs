@@ -170,27 +170,29 @@ namespace HisClient.Models.DICT
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             int intRowHandle = e.FocusedRowHandle;
-
-            object rowIdObj = gridView1.GetRowCellValue(intRowHandle, "ID");
-
-            if (DBNull.Value != rowIdObj)//做个判断否则获取不到id后报错
+            if (intRowHandle >= 0)
             {
-                txtName.ID = rowIdObj.ToString();
+                object rowIdObj = gridView1.GetRowCellValue(intRowHandle, "ID");
 
-                object rowCodeObj = gridView1.GetRowCellValue(intRowHandle, "DOSAGE_CODE");
-                if (rowCodeObj != null)
+                if (DBNull.Value != rowIdObj)//做个判断否则获取不到id后报错
                 {
-                    this.txtCode.Text = rowCodeObj.ToString();
-                }
-                object rowNameObj = gridView1.GetRowCellValue(intRowHandle, "DOSAGE_NAME");
-                if (rowNameObj != null)
-                {
-                    this.txtName.Text = rowNameObj.ToString();
-                }
-                object rowHelpCodeObj = gridView1.GetRowCellValue(intRowHandle, "HELP_CODE");
-                if (rowHelpCodeObj != null)
-                {
-                    this.txtHelpCode.Text = rowHelpCodeObj.ToString();
+                    txtName.ID = rowIdObj.ToString();
+
+                    object rowCodeObj = gridView1.GetRowCellValue(intRowHandle, "DOSAGE_CODE");
+                    if (rowCodeObj != null)
+                    {
+                        this.txtCode.Text = rowCodeObj.ToString();
+                    }
+                    object rowNameObj = gridView1.GetRowCellValue(intRowHandle, "DOSAGE_NAME");
+                    if (rowNameObj != null)
+                    {
+                        this.txtName.Text = rowNameObj.ToString();
+                    }
+                    object rowHelpCodeObj = gridView1.GetRowCellValue(intRowHandle, "HELP_CODE");
+                    if (rowHelpCodeObj != null)
+                    {
+                        this.txtHelpCode.Text = rowHelpCodeObj.ToString();
+                    }
                 }
             }
         }
@@ -207,9 +209,12 @@ namespace HisClient.Models.DICT
                 //grid
                 gridControl1.Dock = DockStyle.Fill;
                 gridControl1.DataSource = ds.Tables[0];
-                //gridView1.Columns.Clear();
-                //ComFunc comfun = new ComFunc();
-                //comfun.dgvstyle(gridView1, 0, "aa", "第一", 10, true, true, DevExpress.Utils.HorzAlignment.Center, DevExpress.XtraGrid.Columns.FixedStyle.Left, true);
+                gridView1.Columns.Clear();
+                ComFunc comfun = new ComFunc();
+                comfun.dgvstyle(gridView1, 0, "ID", "序号", 5, true, true, DevExpress.Utils.HorzAlignment.Center, DevExpress.XtraGrid.Columns.FixedStyle.Left, true);
+                comfun.dgvstyle(gridView1, 1, "DOSAGE_CODE", "编码", 15, true, true, DevExpress.Utils.HorzAlignment.Center, DevExpress.XtraGrid.Columns.FixedStyle.Left, true);
+                comfun.dgvstyle(gridView1, 2, "DOSAGE_NAME", "名称", 15, true, true, DevExpress.Utils.HorzAlignment.Center, DevExpress.XtraGrid.Columns.FixedStyle.Left, true);
+                comfun.dgvstyle(gridView1, 3, "HELP_CODE", "助记符", 15, true, true, DevExpress.Utils.HorzAlignment.Center, DevExpress.XtraGrid.Columns.FixedStyle.Left, true);
             }
             catch (Exception e)
             {

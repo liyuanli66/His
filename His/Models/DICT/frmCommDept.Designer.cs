@@ -239,7 +239,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(166, 20);
             this.txtName.TabIndex = 2;
-            this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCode_KeyDown);
+            this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtName_KeyDown);
             // 
             // gridControl1
             // 
